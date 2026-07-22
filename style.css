@@ -209,34 +209,41 @@ button { font: inherit; }
   .submit-button { width: 100%; }
 }
 
-/* Кнопка "Оставить заявку" */
-.contact-card .button-primary{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+/* Кнопка заявки в блоке контактов */
+.contact-request-button {
+    width: fit-content !important;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 24px;
+    margin-bottom: 12px;
 
-    min-width:190px;
-    height:50px;
+    border: 0;
+    border-radius: 999px;
 
-    padding:0 26px;
+    background: var(--navy);
+    color: #fff;
 
-    border-radius:999px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
 
-    background:var(--navy);
-    color:#fff;
-
-    font-size:14px;
-    font-weight:700;
-
-    box-shadow:0 8px 20px rgba(13,43,82,.18);
-
-    transition:.25s;
+    box-shadow: 0 8px 20px rgba(13, 43, 82, .18);
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
 }
-.contact-card .button-primary:hover{
-    background:var(--blue);
-    transform:translateY(-2px);
-    box-shadow:0 12px 24px rgba(13,43,82,.25);
+.contact-request-button:hover {
+    background: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(13, 43, 82, .24);
 }
-.contact-card .button-primary:active{
-    transform:translateY(0);
+
+.contact-request-button:active {
+    transform: translateY(0);
+}
+@media (max-width: 640px) {
+    .contact-request-button {
+        width: fit-content !important;
+    }
 }
