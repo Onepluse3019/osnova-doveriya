@@ -164,3 +164,47 @@ h1 { margin: 0; font-size: clamp(52px, 7vw, 90px); letter-spacing: -.035em; }
   .footer-inner { padding:36px 0; flex-direction:column; text-align:center; gap:18px; }
   .footer p { margin:0; }
 }
+
+/* Consultation modal */
+body.modal-open { overflow: hidden; }
+body { scroll-padding-top: 100px; }
+button { font: inherit; }
+.text-link { border: 0; padding: 0; background: transparent; cursor: pointer; }
+.back-top { padding: 12px 22px; border: 1px solid rgba(212,175,55,.5); border-radius: 999px; transition: .3s; }
+.back-top:hover { background: var(--gold); color: var(--navy); }
+.consultation-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; visibility: hidden; opacity: 0; transition: opacity .25s ease, visibility .25s ease; }
+.consultation-modal.open { visibility: visible; opacity: 1; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(5,20,40,.72); backdrop-filter: blur(7px); }
+.modal-dialog { position: relative; z-index: 1; width: min(760px, 100%); max-height: min(92vh, 900px); overflow-y: auto; padding: 44px; background: #fff; border-radius: 28px; box-shadow: 0 35px 90px rgba(3,19,39,.34); transform: translateY(22px) scale(.985); transition: transform .25s ease; }
+.consultation-modal.open .modal-dialog { transform: none; }
+.modal-dialog h2 { margin: 0 48px 10px 0; color: var(--navy); font-size: clamp(30px, 5vw, 46px); line-height: 1.08; }
+.modal-intro { margin: 0 0 28px; color: var(--muted); }
+.modal-close { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--paper); color: var(--navy); font-size: 30px; line-height: 1; cursor: pointer; transition: transform .2s, background .2s; }
+.modal-close:hover { transform: rotate(6deg); background: var(--ice); }
+.consultation-form { display: grid; gap: 18px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.form-field { display: grid; gap: 7px; }
+.form-field > span { font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--navy); }
+.form-field input, .form-field textarea { width: 100%; border: 1px solid rgba(13,43,82,.18); border-radius: 14px; background: #fbfcfe; color: var(--text); padding: 14px 15px; outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
+.form-field textarea { resize: vertical; min-height: 115px; }
+.form-field input:focus, .form-field textarea:focus { border-color: var(--blue); background: #fff; box-shadow: 0 0 0 4px rgba(31,78,140,.1); }
+.form-field.invalid input, .form-field.invalid textarea { border-color: #c73e4d; box-shadow: 0 0 0 4px rgba(199,62,77,.08); }
+.field-error, .consent-error { min-height: 16px; color: #b52d3d; font-size: 11px; }
+.consent-field { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 12px; cursor: pointer; }
+.consent-field input { margin-top: 3px; accent-color: var(--navy); }
+.website-field { position: absolute; left: -9999px; }
+.submit-button { position: relative; border: 0; cursor: pointer; justify-self: start; min-width: 210px; }
+.submit-button:disabled { cursor: wait; opacity: .72; transform: none; }
+.submit-loader { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.42); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+.submit-button.loading .submit-label { display: none; }
+.submit-button.loading .submit-loader { display: block; }
+.form-status { min-height: 24px; font-size: 13px; font-weight: 600; }
+.form-status.success { color: #18794e; }
+.form-status.error { color: #b52d3d; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 640px) {
+  .consultation-modal { padding: 10px; align-items: end; }
+  .modal-dialog { max-height: 94vh; padding: 32px 20px 24px; border-radius: 24px 24px 0 0; }
+  .form-grid { grid-template-columns: 1fr; }
+  .submit-button { width: 100%; }
+}
